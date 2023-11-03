@@ -5,10 +5,12 @@ const useUserStore = create((set) => ({
     username: '',
     token: '',
     collapsed: false,
-    updateAuthState: (state) => set(() => ({hasAuth: state})),
-    updateUsername: (uname) => set(() => ({username: uname})),
-    updateToken: (token) => set(() => ({token: token})),
-    updateCollapsed: () => set(t => ({collapsed: !t.collapsed}))
+    rememberMe: false,
+    updateAuthState: t => set(() => ({hasAuth: t})),
+    updateUsername: (t) => set(() => ({username: t})),
+    updateToken: t => set(() => ({token: t})),
+    updateCollapsed: () => set(t => ({collapsed: !t.collapsed})),
+    updateRememberMe: t => set(() => ({rememberMe: t}))
 }));
 
 export default useUserStore;

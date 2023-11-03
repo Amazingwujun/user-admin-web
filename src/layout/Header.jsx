@@ -1,8 +1,9 @@
 import {Avatar, Button, Dropdown, Flex, Image, Space} from "antd";
 import useUserStore from "../store/store.js";
 import {UserOutlined} from "@ant-design/icons";
-import {USER_INFO_KEY} from "../hooks/common.js";
+import {USER_INFO_KEY} from "../const/common.js";
 import logo from "../assets/vite.svg"
+import repository from "../utils/repository.js";
 
 const items = [
     {
@@ -18,8 +19,8 @@ function Header() {
         if (key === '0') {
             // 退出登入
             updateAuth(false);
-            // 清理 localstorage
-            localStorage.removeItem(USER_INFO_KEY);
+            // 清理用户信息
+            repository.remove(USER_INFO_KEY);
         }
     }
 

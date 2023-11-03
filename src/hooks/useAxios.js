@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {message} from "antd";
+import repository from "../utils/repository.js";
+import {USER_INFO_KEY} from "../const/common.js";
 
 let client = axios.create({
     baseURL: '/user-admin',
@@ -18,6 +20,7 @@ let client = axios.create({
  */
 function useAxios(request) {
     const hasAuth = useUserStore(t => t.hasAuth);
+    const updateHasAuth = useUserStore(t => t.updateAuthState);
     const token = useUserStore(t => t.token);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -55,6 +58,8 @@ function useAxios(request) {
                     case '80000009':
                     case '80000010':
                     case '80000011': {
+                        updateHasAuth(false);
+                        repository.remove(USER_INFO_KEY);
                         navigate('/signIn');
                         break
                     }

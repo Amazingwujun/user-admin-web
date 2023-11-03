@@ -2,11 +2,12 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import router from "./routes/router.jsx";
 import useUserStore from "./store/store.js";
 import './App.css'
-import {USER_INFO_KEY} from "./hooks/common.js";
+import {USER_INFO_KEY} from "./const/common.js";
+import repository from "./utils/repository.js";
 
 function App() {
     // 初始化用户登入状态
-    let userInfoStr = localStorage.getItem(USER_INFO_KEY);
+    let userInfoStr = repository.get(USER_INFO_KEY);
     if (userInfoStr) {
         let {hasAuth, username, token} = JSON.parse(userInfoStr);
         const updateAuth = useUserStore(t => t.updateAuthState);
