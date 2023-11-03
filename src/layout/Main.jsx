@@ -8,7 +8,6 @@ import SignIn from "../pages/SigIn.jsx";
 
 
 function Main() {
-    const {pathname} = useLocation();
     const updateCollapsed = useUserStore(t => t.updateCollapsed);
     const collapsed = useUserStore(t => t.collapsed);
     const hasAuth = useUserStore(t => t.hasAuth);
@@ -29,7 +28,7 @@ function Main() {
             <Flex className='full-container'>
                 <LeftBar/>
                 <Flex className='full-container'
-                      style={{minWidth: 0}}
+                      style={{minWidth: 0, padding: '16px 20px'}}
                       justify='center' align='center'><Outlet/></Flex>
                 <FloatButton tooltip={doc()} icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                              onClick={() => updateCollapsed()}/>

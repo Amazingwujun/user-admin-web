@@ -1,8 +1,9 @@
-import {Button, Card, Divider, Flex, Input, Space, Table} from "antd";
+import {Button, Card, DatePicker, Divider, Flex, Input, Space, Table} from "antd";
 import {useRef} from "react";
 import useAxios from "../hooks/useAxios.js";
 import httpClient from "../api/request.js";
 import useUserStore from "../store/store.js";
+import {PlusOutlined, ReloadOutlined, SearchOutlined} from "@ant-design/icons";
 
 const columns = [
     {
@@ -57,6 +58,40 @@ const columns = [
     }
 ]
 
+const grid = {
+    display: 'grid',
+    gridTemplateColumns: '1fr 7fr 1fr 1fr 7fr',
+    gridTemplateRows: 'max-content max-content',
+    gap: '20px 10px',
+    alignItems: 'center',
+    justifyItems: 'start'
+}
+
+function SearchView({req}) {
+
+    return (
+        <Flex className='full-container'>
+            <div style={{...grid, flex: "auto"}}>
+                <label style={{fontWeight: 'bold'}}>用户 ID</label>
+                <Input onChange={t => ref.current.username = t.target.value}/>
+                <span/>
+                <label style={{fontWeight: 'bold'}}>用户名</label>
+                <Input onChange={t => ref.current.username = t.target.value}/>
+
+                <label style={{fontWeight: 'bold'}}>手机号</label>
+                <Input onChange={t => ref.current.username = t.target.value}/>
+                <span/>
+                <label style={{fontWeight: 'bold'}}>创建时间</label>
+                <DatePicker.RangePicker showTime/>
+            </div>
+            <Divider type='vertical' style={{height: 90}}/>
+            <Flex vertical justify={"space-between"} align='center' style={{minWidth: 200}}>
+                <Button style={{width: 100}} icon={<SearchOutlined/>} type='primary'>搜索</Button>
+                <Button style={{width: 100}} icon={<ReloadOutlined/>} type='primary'>重置</Button>
+            </Flex>
+        </Flex>
+    )
+}
 
 function User() {
     const ref = useRef({username: ''});
@@ -64,7 +99,9 @@ function User() {
     const {loading, setLoading, payload, setPayload} = useAxios({
         url: '/user/page',
         method: 'POST',
-        data: {}
+        data: {
+            pageSize: 12
+        }
     });
 
     let req = () => httpClient({
@@ -86,11 +123,11 @@ function User() {
     return (
         <Card title='用户管理' className='full-container'>
             <Flex vertical>
-                <Space>
-                    <Input placeholder='用户名' onChange={t => ref.current.username = t.target.value}/>
-                    <Button type={"primary"} onClick={req}>提交</Button>
-                </Space>
+                <SearchView req={req}/>
                 <Divider/>
+                <Space style={{marginBottom: 10}}>
+                    <Button icon={<PlusOutlined/>} type='primary'>新增</Button>
+                </Space>
                 <Table
                     size='small'
                     loading={loading}
@@ -101,6 +138,7 @@ function User() {
                         total: payload?.total,
                         current: payload?.pageNum,
                         size: 'small',
+                        position: ['bottomLeft'],
                         showTotal: t => `共 ${t} 条记录`
                     }}
                     dataSource={payload?.list}
