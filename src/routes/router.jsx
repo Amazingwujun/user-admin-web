@@ -1,34 +1,39 @@
-import {createBrowserRouter} from "react-router-dom";
 import SignIn from "../pages/SigIn.jsx";
-import AuthRequired from "./AuthRequired.jsx";
 import Main from "../layout/Main.jsx";
 import Tenant from "../pages/Tenant.jsx";
 import Resource from "../pages/Resource.jsx";
+import NotFounded from "../pages/NotFounded.jsx";
+import Test from "../pages/Test.jsx";
 
-const router = createBrowserRouter([
+const router = [
     {
-        element: <AuthRequired />,
+        path: '/',
+        element: <Main/>,
+        errorElement: <NotFounded/>,
         children: [
             {
-                path: '/',
-                element: <Main />,
-                children: [
-                    {
-                        path: '/tenant',
-                        element: <Tenant />
-                    },
-                    {
-                        path: '/resource',
-                        element: <Resource />
-                    }
-                ]
+                index: true,
+                element: <Tenant/>
+            },
+            {
+                path: '/tenant',
+                element: <Tenant/>
+            },
+            {
+                path: '/resource',
+                element: <Resource/>
+            },
+            {
+                path: '/test',
+                element: <Test/>
             }
         ]
     },
     {
         path: '/signIn',
-        element: <SignIn />
+        element: <SignIn/>
     }
-]);
+];
+
 
 export default router;

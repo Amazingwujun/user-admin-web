@@ -99,7 +99,8 @@ function Resource() {
                bordered={true}
                rowKey='id'
                pagination={pageConfig}
-               scroll={{y: 800}}
+               scroll={{y: 820}}
+               size='small'
                columns={columns} dataSource={payload}/>
 
     );

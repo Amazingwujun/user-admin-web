@@ -41,7 +41,7 @@ function Tenant() {
                 <Button type={"primary"} onClick={() => {request.data = {id: tenantId}}}>提交</Button>
             </Space>
             <Flex flex={"auto"}>
-                <Table className='full-container' columns={columns} dataSource={payload?.list}/>
+                <Table className='full-container' columns={columns} size='small' dataSource={payload?.list}/>
             </Flex>
         </Flex>
     )
