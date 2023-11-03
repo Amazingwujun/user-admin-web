@@ -11,7 +11,7 @@ function NotFounded() {
             title={error.statusText}
             status={error.status}
             subTitle={error.data}
-            extra={<Button type='primary' onClick={() => navigate('/')}>回到主页</Button>}
+            extra={<Button type='primary' style={{minWidth: 250, height: 40}} onClick={() => navigate('/')}>回到主页</Button>}
         />
     )
 }

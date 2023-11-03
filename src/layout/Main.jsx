@@ -12,11 +12,15 @@ function Main() {
     const updateCollapsed = useUserStore(t => t.updateCollapsed);
     const collapsed = useUserStore(t => t.collapsed);
     const hasAuth = useUserStore(t => t.hasAuth);
-
-    console.log('path', pathname)
-
     if (!hasAuth) {
         return <SignIn/>
+    }
+
+    const doc = () => {
+        if (collapsed) {
+            return <div>展开菜单</div>
+        }
+        return <div>折叠菜单</div>
     }
 
     return (
@@ -27,7 +31,7 @@ function Main() {
                 <Flex className='full-container'
                       style={{minWidth: 0}}
                       justify='center' align='center'><Outlet/></Flex>
-                <FloatButton icon={collapsed ? <MenuFoldOutlined/> : <MenuUnfoldOutlined/>}
+                <FloatButton tooltip={doc()} icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                              onClick={() => updateCollapsed()}/>
             </Flex>
         </Flex>

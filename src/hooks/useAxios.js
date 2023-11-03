@@ -16,7 +16,7 @@ let client = axios.create({
  * @param {Object} request
  * @param {string} request.url
  * @param {string} request.method
- * @returns {{payload: Object, loading: boolean}}
+ * @returns {{payload: Object, loading: boolean, setLoading: function, setPayload: function}}
  */
 function useAxios(request) {
     const hasAuth = useUserStore(t => t.hasAuth);
@@ -74,7 +74,7 @@ function useAxios(request) {
         );
     }, []);
 
-    return {loading, payload}
+    return {loading, setLoading, payload, setPayload}
 }
 
 

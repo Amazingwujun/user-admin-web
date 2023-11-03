@@ -6,7 +6,7 @@ const columns = [
         title: '名称',
         dataIndex: 'name',
         key: 'name',
-        width: 200
+        width: 250
     },
     {
         title: 'ID',

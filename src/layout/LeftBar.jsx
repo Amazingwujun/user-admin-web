@@ -32,6 +32,7 @@ const items = [
         getItem('Option 11', '11'),
         getItem('Option 12', '12'),
     ]),
+    getItem('用户管理', '/user'),
     getItem('租户管理', '/tenant'),
     getItem('资源管理', '/resource')
 ];

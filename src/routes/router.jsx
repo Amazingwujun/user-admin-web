@@ -4,6 +4,7 @@ import Tenant from "../pages/Tenant.jsx";
 import Resource from "../pages/Resource.jsx";
 import NotFounded from "../pages/NotFounded.jsx";
 import Test from "../pages/Test.jsx";
+import User from "../pages/User.jsx";
 
 const router = [
     {
@@ -22,6 +23,10 @@ const router = [
             {
                 path: '/resource',
                 element: <Resource/>
+            },
+            {
+                path: '/user',
+                element: <User/>
             },
             {
                 path: '/test',

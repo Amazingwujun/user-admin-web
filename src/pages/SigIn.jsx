@@ -131,7 +131,7 @@ function ByPasswd() {
                 name="basic"
                 form={form}
                 style={{
-                    width: 300,
+                    width: 350,
                     marginBottom: 100
                 }}
                 onFinish={onFinish}
@@ -180,7 +180,7 @@ function ByPasswd() {
                 </Form.Item>
 
                 <Form.Item>
-                    <Space align={"top"}>
+                    <Flex justify='space-between' style={{minWidth: 0}}>
                         <Form.Item
                             name="captchaStr"
                             rules={[
@@ -192,19 +192,19 @@ function ByPasswd() {
                         >
                             <Input placeholder={'请输入验证码'} style={{height: 40}}/>
                         </Form.Item>
-                        <Image src={captchaInfo.img && 'data:image/png;base64,' + captchaInfo.img} style={{height: 40}}
+                        <Image src={captchaInfo.img && 'data:image/png;base64,' + captchaInfo.img} style={{height: 40, width: 100}}
                                preview={false}
                                fallback={IMG_PLACE_HOLDER}
                                onClick={onCaptchaImgClicked}/>
-                    </Space>
+                    </Flex>
                 </Form.Item>
 
                 <Form.Item>
                     <Flex justify='space-between' align='center'>
-                        <Checkbox onChange={(e) => updateRememberMe(e.target.checked)}>
+                        <Checkbox style={{flex: 4}} onChange={(e) => updateRememberMe(e.target.checked)}>
                             记住我
                         </Checkbox>
-                        <Button type="primary" loading={loading} style={{height: 40, width: 200}} htmlType="submit">
+                        <Button type="primary" loading={loading} style={{height: 40, flex: 6}} htmlType="submit">
                             登入
                         </Button>
                     </Flex>
@@ -222,8 +222,11 @@ function SignIn() {
     }
 
     return (
-        <Flex className="full-container" justify={"center"} align={"center"} style={{background: '#f0f2f5'}}>
-            <ByPasswd/>
+        <Flex className="full-container" vertical justify={"center"} align={"center"} style={{background: '#f0f2f5'}}>
+            <div style={{display: "flex", flexDirection: 'column', justifyContent: 'center' ,alignItems: 'center', marginBottom: 100}}>
+                <span style={{marginBottom: 20, fontSize: 50, fontWeight: 'bold'}}>User Admin</span>
+                <ByPasswd/>
+            </div>
         </Flex>
     );
 }
